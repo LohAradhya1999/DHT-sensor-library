@@ -250,7 +250,7 @@ bool DHT::read(bool force) {
   // Go into high impedence state to let pull-up raise data line level and
   // start the reading process.
   pinMode(_pin, INPUT_PULLUP);
-  delay(1);
+  delay(2); //check for the data sheet given for dht22 on google and you will find that the minimum delay to be given for the dht22 is 1ms , hence the 2ms delaY
 
   // First set data line low for a period according to sensor type
   pinMode(_pin, OUTPUT);
@@ -258,7 +258,7 @@ bool DHT::read(bool force) {
   switch (_type) {
   case DHT22:
   case DHT21:
-    delayMicroseconds(1100); // data sheet says "at least 1ms"
+    delayMicroseconds(2200); // data sheet says "at least 1ms SO GIVE A LITTLE HIGHER THAN 1MS SAY 2MS"
     break;
   case DHT11:
   default:
